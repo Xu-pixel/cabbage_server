@@ -31,6 +31,24 @@ export default router
             response.body = comment
         }
     )
+    .post(
+        '/zan/:id',
+        JWTKeeper,
+        async ({ state, response, params }) => {
+            const comment = await CommentModel.findById(params.id)
+            comment?.likes.addToSet(state.userName)
+            response.body = await comment?.save()
+        }
+    )
+    .delete(
+        '/zan/:id',
+        JWTKeeper,
+        async ({ state, response, params }) => {
+            const comment = await CommentModel.findById(params.id)
+            comment?.likes.remove(state.userName)
+            response.body = await comment?.save()
+        }
+    )
     .delete(
         '/:id',
         JWTKeeper,

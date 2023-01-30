@@ -1,6 +1,5 @@
 import { getModelForClass, prop } from "npm:@typegoose/typegoose@9.13.x"
 import mongoose from 'npm:mongoose@~6.7'
-import { User } from "./User.ts"
 
 export class Comment {
     @prop({ ref: () => Comment })
@@ -15,8 +14,8 @@ export class Comment {
     @prop()
     author!: string
 
-    @prop({ ref: () => User })
-    likes!: mongoose.Types.Array<User>
+    @prop()
+    likes!: mongoose.Types.Array<string>
 
     @prop()
     at!: string
