@@ -17,6 +17,7 @@ app.use(ErrorHandler)
 app.use(commentRoute.prefix('/comment').routes())
 app.use(UserRoute.prefix('/user').routes())
 
-console.log('Oak 服务器工作在 http://localhost:8000')
+if (Deno.env.get('DEV'))
+    console.log('Oak 服务器工作在 http://localhost:8000')
 
 await app.listen({ port: 8000 });
