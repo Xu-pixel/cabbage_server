@@ -1,6 +1,7 @@
 import mongoose from 'npm:mongoose@~6.7'
 import commentRoute from './routes/comment.ts'
 import UserRoute from './routes/user.ts'
+import ArticleRoute from './routes/article.ts'
 import { Application } from "https://deno.land/x/oak@v11.1.0/mod.ts";
 import { CORS } from "https://deno.land/x/oak_cors@v0.1.1/mod.ts";
 import { ErrorHandler, Logger, Timer } from './Middlewares.ts';
@@ -16,6 +17,7 @@ app.use(Timer)
 app.use(ErrorHandler)
 app.use(commentRoute.prefix('/comment').routes())
 app.use(UserRoute.prefix('/user').routes())
+app.use(ArticleRoute.prefix('/article').routes())
 
 if (Deno.env.get('DEV'))
     console.log('Oak 服务器工作在 http://localhost:8000')
